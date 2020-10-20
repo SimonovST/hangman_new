@@ -7,25 +7,26 @@ class Game
   end
 
   def errors
-    return @user_guesses - normalized_letter
+    @user_guesses - normalized_letter
   end
 
   def errors_made
-    return errors.length
+    errors.length
   end
 
   def errors_allowed
-    return TOTAL_ERRORS_ALLOWED - errors_made
+    TOTAL_ERRORS_ALLOWED - errors_made
   end
 
   def normalize_letter(letter)
     return 'Е' if letter == 'Ё'
     return 'И' if letter == 'Й'
+
     letter
   end
 
   def normalized_letter
-    @letters.map { |letter| normalize_letter(letter)}
+    @letters.map { |letter| normalize_letter(letter) }
   end
 
   def letters_to_guess
@@ -38,15 +39,15 @@ class Game
         end
       end
 
-    return result
+    result
   end
 
   def lost?
-    return errors_allowed == 0
+    errors_allowed == 0
   end
 
   def over?
-    return won? || lost?
+    won? || lost?
   end
 
   def play!(letter)
@@ -58,10 +59,10 @@ class Game
   end
 
   def won?
-    return (normalized_letter - @user_guesses).empty?
+    (normalized_letter - @user_guesses).empty?
   end
 
   def word
-    return @letters.join
+    @letters.join
   end
 end
